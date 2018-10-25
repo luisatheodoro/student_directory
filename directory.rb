@@ -47,6 +47,26 @@ def check_if_input_was_given_and_is_correct(input, type_of_data)
   return input
 end
 
+def edit_student_detail
+  @students.each do |s|
+    print_students_list 
+    puts "Would you like to edit the name or the cohort?"
+    input = gets.chomp
+    while true
+      p input
+      if input != "name" && input != "cohort"
+        puts "This option is not valid, choose name or cohort"
+        input = gets.chomp.downcase
+      else 
+        puts "Please write the #{input} again"
+        new_input = gets.chomp.downcase
+        s["#{input}".to_sym] = new_input
+        break
+      end
+    end
+  end
+end
+
 print_header
 print_students_list
 print_footer
