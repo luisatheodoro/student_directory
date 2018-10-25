@@ -1,3 +1,4 @@
+require 'csv'
 @students = []
 
 def print_menu
