@@ -1,5 +1,51 @@
 @students = []
 
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "3. Save the list to a cvs file"
+  puts "4. Load the list from a csv file"
+  puts "5. Edit student detail"
+  puts "9. Exit"
+end
+
+def show_students
+  print_header
+  print_students_list
+  print_footer
+end
+
+def process(selection)
+  case selection
+    when "1"
+      input_students
+      puts ">>Students input was sucessfull"
+    when "2"
+      show_students
+      puts ">>Students printed to screen"
+    when "3"
+      save_students
+      puts ">>Students saved to file"
+    when "4"
+      load_students
+      puts ">>Students loaded"
+    when "5"
+      edit_student_detail
+      puts ">>Student detail edited"
+    when "9"
+      exit
+    else
+      puts "I don't know what you mean, try again"
+  end
+end
+
+def interactive_menu
+  loop do
+    print_menu
+    process(STDIN.gets.chomp)
+  end
+end
+
 def print_header
   puts "The students of Makers Academy"
   puts "-------------"
