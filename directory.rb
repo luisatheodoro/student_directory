@@ -51,6 +51,11 @@ def push_student_data_inside_array(name, cohort)
   @students << {name: name, cohort: cohort.to_sym}
 end
 
+def input_file_name
+  puts "File name:"
+  filename = STDIN.gets.chomp
+end
+
 def save_students
   CSV.open("#{input_file_name}.csv", "w") do |csv|
     @students.each do |student|
