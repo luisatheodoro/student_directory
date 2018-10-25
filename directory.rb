@@ -149,6 +149,4 @@ def edit_student_detail
   end
 end
 
-print_header
-print_students_list
-print_footer
+interactive_menu
