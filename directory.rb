@@ -46,6 +46,10 @@ def interactive_menu
   end
 end
 
+def push_student_data_inside_array(name, cohort)
+  @students << {name: name, cohort: cohort.to_sym}
+end
+
 def save_students
   CSV.open("#{input_file_name}.csv", "w") do |csv|
     @students.each do |student|
@@ -85,15 +89,20 @@ def print_students_list
 end 
 
 def input_students
-  puts "Please enter the names of the students"
+  puts "Enter the name of the students"
   puts "To finish, just hit return twice"
-  name = gets.chomp
+  name = STDIN.gets.chomp
+  puts "What is the cohort?"
+  cohort = STDIN.gets.chomp
   while !name.empty? do
-    @students << {name: name, cohort: :november}
+    push_student_data_inside_array(name, cohort)
     puts "Now we have #{@students.count} students"
-    name = gets.chomp
+    puts "name:"
+    name = STDIN.gets.chomp
+    puts "cohort:"
+    cohort = STDIN.gets.chomp
   end
-  students
+  @students
 end
 
 def print_footer
