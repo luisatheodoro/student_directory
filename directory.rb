@@ -46,6 +46,33 @@ def interactive_menu
   end
 end
 
+def save_students
+  CSV.open("#{input_file_name}.csv", "w") do |csv|
+    @students.each do |student|
+      csv << [student[:name], student[:cohort]]
+    end
+  end
+end
+
+def load_students
+  CSV.foreach("#{input_file_name}.csv", "r") do |student|
+      name, cohort = student[0], student[1]
+      push_student_data_inside_array(name, cohort)
+  end
+end
+
+def try_load_students()
+  filename = ARGV.first
+  return if filename.nil? 
+  if CSV.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{@students.count} from #{filename}"
+  else 
+    puts "Sorry, #{filename} doesn't exist."
+    exit 
+  end
+end
+
 def print_header
   puts "The students of Makers Academy"
   puts "-------------"
