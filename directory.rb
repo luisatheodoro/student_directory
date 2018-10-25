@@ -141,10 +141,10 @@ def edit_student_detail
     puts "Would you like to edit the name or the cohort?"
     input = gets.chomp
     while true
-      p input
       if input != "name" && input != "cohort"
         puts "This option is not valid, choose name or cohort"
         input = gets.chomp.downcase
+        break
       else 
         puts "Please write the #{input} again"
         new_input = gets.chomp.downcase
